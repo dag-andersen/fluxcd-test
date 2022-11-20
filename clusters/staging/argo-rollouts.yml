@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: argo-rollouts
+  namespace: flux-system
+spec:
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: argo-rollouts
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: argo-rollouts
+      version: 2.x.x
+  interval: 1h0m0s
+  releaseName: argo-rollouts
+  targetNamespace: argo-rollouts
