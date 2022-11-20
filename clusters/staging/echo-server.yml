@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: echo-server
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./echo-server/overlays/stage
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: app
+  targetNamespace: default
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: echo-client
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./echo-client/overlays/stage
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: app
+  targetNamespace: default
